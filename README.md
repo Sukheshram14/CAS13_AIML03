@@ -90,7 +90,7 @@ In addition to standard sentiment categories, our system detects specific emotio
 - **Advanced NLP Features**: Entity recognition, topic modeling, and semantic analysis
 
 ### Business Expansion Opportunities
-- Indust ry-specific sentiment models (finance, healthcare, retail)
+- Industry-specific sentiment models (finance, healthcare, retail)
 - Competitive intelligence as a service
 - Campaign effectiveness measurement
 - Integration with CRM systems
