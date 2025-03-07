@@ -1,0 +1,75 @@
+:root {
+  --primary-100: #FF6600;
+  --primary-200: #ff983f;
+  --primary-300: #ffffa1;
+  --accent-100: #F5F5F5;
+  --accent-200: #929292;
+  --text-100: #FFFFFF;
+  --text-200: #e0e0e0;
+  --bg-100: #1D1F21;
+  --bg-200: #2c2e30;
+  --bg-300: #444648;
+}
+
+body {
+  color: var(--text-100);
+  background-color: var(--bg-100);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--text-100);
+}
+
+input, textarea, select {
+  background-color: var(--text-100) !important;
+  color: var(--bg-300) !important;
+  border: 1px solid var(--bg-300) !important;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+input::placeholder {
+  color: var(--accent-200) !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-200) !important;
+}
+
+.navbar-brand:hover {
+  color: var(--primary-200) !important;
+}
+
+a:hover {
+  color: var(--primary-200) !important;
+} 
+
+  /* Button Styles */
+  .btn-gradient {
+    background: linear-gradient(45deg, var(--primary-100), var(--primary-200));
+    border: none;
+    color: var(--text-100);
+  }
+  
+  .btn-gradient:hover {
+    opacity: 0.9;
+  }
+  
+  /* Input Styles */
+  .custom-input {
+    background-color: var(--bg-300);
+    border: 1px solid var(--primary-200);
+    color: var(--text-100);
+  }
+  
+  /* Link Hover */
+  a:hover {
+    color: var(--accent-100);
+  }
+  
+  /* Dark Mode Overrides */
+  .dark-mode {
+    background-color: var(--bg-100) !important;
+    color: var(--text-100) !important;
+  }
+  

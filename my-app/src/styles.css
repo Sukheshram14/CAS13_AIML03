@@ -1,0 +1,30 @@
+
+  /* Button Styles */
+  .btn-gradient {
+    background: linear-gradient(45deg, var(--primary-100), var(--primary-200));
+    border: none;
+    color: var(--text-100);
+  }
+  
+  .btn-gradient:hover {
+    opacity: 0.9;
+  }
+  
+  /* Input Styles */
+  .custom-input {
+    background-color: var(--bg-300);
+    border: 1px solid var(--primary-200);
+    color: var(--text-100);
+  }
+  
+  /* Link Hover */
+  a:hover {
+    color: var(--accent-100);
+  }
+  
+  /* Dark Mode Overrides */
+  .dark-mode {
+    background-color: var(--bg-100) !important;
+    color: var(--text-100) !important;
+  }
+  

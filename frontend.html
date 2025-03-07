@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandSentiment AI - Discover What People Think About Your Favorite Brands</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .sentiment-positive { background-color: rgba(16, 185, 129, 0.1); border-left: 4px solid rgb(16, 185, 129); }
+        .sentiment-neutral { background-color: rgba(156, 163, 175, 0.1); border-left: 4px solid rgb(156, 163, 175); }
+        .sentiment-negative { background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid rgb(239, 68, 68); }
+        .word-cloud span { display: inline-block; margin: 5px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-chart-line text-indigo-600 text-3xl mr-2"></i>
+                    <h1 class="text-xl font-bold text-gray-800">BrandSentiment AI</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-indigo-600 font-medium">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">Sentiment Analysis</a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">About</a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">Contact</a>
+                </nav>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-gray-500 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Homepage Content -->
+    <section id="homepage" class="block">
+        <!-- Hero Section -->
+        <div class="bg-indigo-600 text-white">
+            <div class="container mx-auto px-4 py-16 md:py-24">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-6">Discover What People Think About Your Favorite Brands!</h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">Analyze social media sentiment using AI-powered insights.</p>
+                    <div class="max-w-xl mx-auto">
+                        <div class="flex flex-col md:flex-row">
+                            <input type="text" id="search-brand" placeholder="Enter a Brand Name / Product / Hashtag" class="flex-grow px-5 py-3 rounded-t-lg md:rounded-l-lg md:rounded-tr-none text-gray-800 focus:outline-none" value="iPhone 15">
+                            <button id="analyze-btn" class="px-6 py-3 bg-indigo-800 hover:bg-indigo-900 rounded-b-lg md:rounded-r-lg md:rounded-bl-none font-medium transition">Analyze Sentiment</button>
+                        </div>
+                        <p class="text-sm mt-2 opacity-75">Examples: "iPhone 15", "#Tesla", "Nike Air Jordan"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Brands -->
+        <div class="container mx-auto px-4 py-12">
+            <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Popular Brand Analyses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Brand Cards -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fab fa-apple text-3xl text-gray-700 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Apple</h3>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 72%"></div>
+                            </div>
+                            <span class="ml-3 font-medium">72%</span>
+                        </div>
+                        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded transition">View Analysis</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fab fa-tesla text-3xl text-gray-700 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Tesla</h3>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 68%"></div>
+                            </div>
+                            <span class="ml-3 font-medium">68%</span>
+                        </div>
+                        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded transition">View Analysis</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fab fa-spotify text-3xl text-gray-700 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Spotify</h3>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 81%"></div>
+                            </div>
+                            <span class="ml-3 font-medium">81%</span>
+                        </div>
+                        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded transition">View Analysis</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Page -->
+    <section id="results-page" class="hidden">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Back button -->
+            <button id="back-to-home" class="flex items-center text-indigo-600 mb-6">
+                <i class="fas fa-arrow-left mr-2"></i> Back to search
+            </button>
+
+            <!-- Brand Overview Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <i class="fab fa-apple text-5xl text-gray-800 mr-4"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold" id="brand-name">iPhone 15</h2>
+                            <p class="text-gray-600">Smartphone by Apple Inc.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium mr-3">
+                            <i class="far fa-smile mr-1"></i> 72% Positive
+                        </div>
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full font-medium">
+                            <i class="far fa-frown mr-1"></i> 28% Negative
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Sentiment Overview Chart -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Overall Sentiment</h3>
+                    <div class="flex justify-center">
+                        <div class="w-48 h-48 rounded-full border-8 border-green-500 relative flex items-center justify-center">
+                            <div class="absolute text-3xl font-bold">72%</div>
+                            <div class="absolute right-0 bottom-0 w-16 h-16 rounded-full border-8 border-red-500 bg-white"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-6 space-x-6">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
+                            <span>Positive</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+                            <span>Negative</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentiment by Category -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Sentiment by Category</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Camera Quality</span>
+                                <span class="text-green-600">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Battery Life</span>
+                                <span class="text-red-600">40%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Performance</span>
+                                <span class="text-green-600">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Price Value</span>
+                                <span class="text-red-600">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-green-500 h-4 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Cloud and Tweet Feed -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Keyword Cloud -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Top Keywords</h3>
+                    <div class="word-cloud text-center">
+                        <span class="text-3xl font-bold text-indigo-600">camera</span>
+                        <span class="text-2xl text-green-500">quality</span>
+                        <span class="text-xl text-red-500">battery</span>
+                        <span class="text-2xl text-indigo-500">photos</span>
+                        <span class="text-lg text-yellow-500">price</span>
+                        <span class="text-xl text-blue-500">screen</span>
+                        <span class="text-lg text-purple-500">design</span>
+                        <span class="text-2xl text-green-600">performance</span>
+                        <span class="text-xl text-red-600">expensive</span>
+                        <span class="text-lg text-blue-600">features</span>
+                        <span class="text-xl text-yellow-600">upgrade</span>
+                        <span class="text-lg text-indigo-400">innovation</span>
+                    </div>
+                </div>
+
+                <!-- Hashtag & Topic Analysis -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Trending Hashtags</h3>
+                    <div class="flex flex-wrap">
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#iPhone15</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#AppleEvent</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#CameraComparison</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#BatteryLife</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#iPhonePhotography</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#AppleTech</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#TechReview</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm m-1">#SmartphoneWars</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4 mt-6">Most Used Phrases</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-quote-left text-indigo-400 mt-1 mr-2"></i>
+                            <span>"best camera on a smartphone"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-quote-left text-indigo-400 mt-1 mr-2"></i>
+                            <span>"battery drains quickly"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-quote-left text-indigo-400 mt-1 mr-2"></i>
+                            <span>"worth the upgrade"</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-quote-left text-indigo-400 mt-1 mr-2"></i>
+                            <span>"too expensive for what you get"</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Live Tweet Feed -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-semibold mb-4">Live Social Media Feed</h3>
+                <div class="space-y-4 max-h-96 overflow-y-auto">
+                    <!-- Positive Tweet -->
+                    <div class="p-4 rounded sentiment-positive">
+                        <div class="flex items-start">
+                            <div class="rounded-full bg-gray-200 w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium">@techreviewpro</span>
+                                    <span class="ml-2 text-gray-500 text-sm">2h ago</span>
+                                    <span class="ml-2 text-green-600 text-sm font-medium">
+                                        <i class="far fa-smile mr-1"></i> Positive
+                                    </span>
+                                </div>
+                                <p class="mt-1">Just took some stunning night photos with my new iPhone 15. The camera quality is seriously impressive, way better than any phone I've had before! #iPhone15 #NightMode</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Negative Tweet -->
+                    <div class="p-4 rounded sentiment-negative">
+                        <div class="flex items-start">
+                            <div class="rounded-full bg-gray-200 w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium">@gadgetuser83</span>
+                                    <span class="ml-2 text-gray-500 text-sm">5h ago</span>
+                                    <span class="ml-2 text-red-600 text-sm font-medium">
+                                        <i class="far fa-frown mr-1"></i> Negative
+                                    </span>
+                                </div>
+                                <p class="mt-1">Battery life on the iPhone 15 is disappointing. Can't even make it through a full day without charging. Not what I expected for a $1000+ phone. 🔋⚠ #BatteryIssues</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Neutral Tweet -->
+                    <div class="p-4 rounded sentiment-neutral">
+                        <div class="flex items-start">
+                            <div class="rounded-full bg-gray-200 w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium">@phonereviewhub</span>
+                                    <span class="ml-2 text-gray-500 text-sm">8h ago</span>
+                                    <span class="ml-2 text-gray-600 text-sm font-medium">
+                                        <i class="far fa-meh mr-1"></i> Neutral
+                                    </span>
+                                </div>
+                                <p class="mt-1">The iPhone 15 has some good improvements over the 14, but nothing revolutionary. If you have a 13 or 14, probably not worth upgrading unless you really need the new camera features.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Positive Tweet -->
+                    <div class="p-4 rounded sentiment-positive">
+                        <div class="flex items-start">
+                            <div class="rounded-full bg-gray-200 w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium">@techwizard42</span>
+                                    <span class="ml-2 text-gray-500 text-sm">10h ago</span>
+                                    <span class="ml-2 text-green-600 text-sm font-medium">
+                                        <i class="far fa-smile mr-1"></i> Positive
+                                    </span>
+                                </div>
+                                <p class="mt-1">iOS is running super smooth on the iPhone 15. Apps open instantly and multitasking is a breeze. Performance is definitely a big upgrade from my old phone! #iPhonePerformance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Engagement -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6 text-center">
+                <h3 class="text-xl font-semibold mb-2">Think our AI got it wrong?</h3>
+                <p class="text-gray-600 mb-4">Vote on sentiment accuracy to help us improve!</p>
+                <div class="flex justify-center space-x-4">
+                    <button class="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
+                        <i class="far fa-thumbs-up mr-2"></i> Accurate
+                    </button>
+                    <button class="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition">
+                        <i class="far fa-thumbs-down mr-2"></i> Inaccurate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-chart-line text-indigo-400 text-2xl mr-2"></i>
+                        <h2 class="text-xl font-bold">BrandSentiment AI</h2>
+                    </div>
+                    <p class="mt-2 text-gray-400">Powered by AI & NLP</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center md:text-left">
+                <p class="text-gray-400">Copyright © 2025 BrandSentiment AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const homePage = document.getElementById('homepage');
+            const resultsPage = document.getElementById('results-page');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const backBtn = document.getElementById('back-to-home');
+            const brandInput = document.getElementById('search-brand');
+            const brandNameDisplay = document.getElementById('brand-name');
+            
+            analyzeBtn.addEventListener('click', function() {
+                // Update brand name in results
+                brandNameDisplay.textContent = brandInput.value || 'iPhone 15';
+                
+                // Hide homepage, show results
+                homePage.classList.add('hidden');
+                resultsPage.classList.remove('hidden');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+            
+            backBtn.addEventListener('click', function() {
+                // Hide results, show homepage
+                resultsPage.classList.add('hidden');
+                homePage.classList.remove('hidden');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
